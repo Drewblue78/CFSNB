@@ -1,0 +1,14 @@
+{
+  "name": "php-project",
+  "version": "1.0.0",
+  "description": "Php joke generator project",
+  "main": "index.js",
+  "scripts": {
+    "test": "testing"
+  },
+  "author": "Andrew Power",
+  "license": "ISC",
+  "keywords": [
+    "php"
+  ]
+}

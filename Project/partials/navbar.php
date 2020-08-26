@@ -1,18 +1,13 @@
 <nav>
     <a href="index.php">Home</a>
     <a href="jokes.php">Jokes</a>
-    <?php
-    session_start();
-    if ($_SESSION['userId'] && $_SESSION['admin']) {
-        echo '<a href="admin.php">Admin</a>';
-    }
-    ?>
+
     <div id="loginbox">
         <div id="currentUser">Not Logged In</div>
         <div id="loginForm">
             <div class="notLoggedIn">
-                <input id="username" value="jermerf" />
-                <input id="password" type="password" value="puppies" />
+                <input id="username" value="bluedrew" />
+                <input id="password" type="password" value="joan" />
                 <button onclick="login()">Login</button>
                 <button onclick="register()">Register</button>
             </div>

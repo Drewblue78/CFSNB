@@ -76,5 +76,5 @@
     }
 </style>
 <script>
-    const SERVER = "http://localhost/Sessions/server.php"
+    const SERVER = "http://localhost/Project/server.php"
 </script>
