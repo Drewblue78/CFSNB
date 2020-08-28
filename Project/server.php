@@ -105,7 +105,7 @@ function loginSuccess($user)
   $res->admin = !!$user['admin'];
 
   // Update the last_login
-  $query = "UPDATE session_user SET (last_login = UTC_TIMESTAMP()) WHERE id = :uid";
+  $query = "UPDATE session_user SET last_login = UTC_TIMESTAMP() WHERE id = :uid";
 
   $stm = $con->prepare($query);
   $stm->bindParam(':uid', $user['id']);

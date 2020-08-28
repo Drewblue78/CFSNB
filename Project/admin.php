@@ -7,7 +7,7 @@
 
 <body>
     <?php require "partials/navbar.php" ?>
-    <h1>Jokes</h1>
+    <h1>Admin</h1>
     <?php
 
 

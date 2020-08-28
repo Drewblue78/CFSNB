@@ -3,7 +3,9 @@
     <a href="jokes.php">Jokes</a>
     <?php
     session_start();
-    if ($_SESSION['userId']) {
+    $userid = $_SESSION['userId'] ?? false;
+    $isAdmin = $_SESSION['admin'] ?? false;
+    if ($userid && $isAdmin) {
         echo '<a href="admin.php">Admin</a>';
     }
     ?>
@@ -41,6 +43,8 @@
             } else {
                 $('div#loginStatus').text(res.message)
             }
+        }).fail(err => {
+            $('div#loginStatus').html(err.responseText)
         })
     }
 
@@ -57,6 +61,8 @@
             } else {
                 $('div#loginStatus').text(res.message)
             }
+        }).fail(err => {
+            $('div#loginStatus').html(err)
         })
     }
 
