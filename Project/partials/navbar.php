@@ -1,7 +1,12 @@
 <nav>
     <a href="index.php">Home</a>
     <a href="jokes.php">Jokes</a>
-
+    <?php
+    session_start();
+    if ($_SESSION['userId']) {
+        echo '<a href="admin.php">Admin</a>';
+    }
+    ?>
     <div id="loginbox">
         <div id="currentUser">Not Logged In</div>
         <div id="loginForm">

@@ -68,7 +68,7 @@
 
     div#loginStatus {
         font-weight: bold;
-        color: #e52;
+        color: #e32;
     }
 
     .loggedIn {
