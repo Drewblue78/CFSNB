@@ -3,9 +3,7 @@
     <a href="jokes.php">Jokes</a>
     <?php
     session_start();
-    $userid = $_SESSION['userId'] ?? false;
-    $isAdmin = $_SESSION['admin'] ?? false;
-    if ($userid && $isAdmin) {
+    if ($_SESSION['userId'] && $_SESSION['admin']) {
         echo '<a href="admin.php">Admin</a>';
     }
     ?>

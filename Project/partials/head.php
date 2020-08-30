@@ -5,7 +5,7 @@
 <style>
     body,
     html {
-        background-color: #333;
+        background-color: #8aa;
         color: #fff;
         margin: 0;
         font-family: Arial, Helvetica, sans-serif;

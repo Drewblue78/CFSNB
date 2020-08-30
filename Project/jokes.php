@@ -10,8 +10,8 @@
     <h1>Jokes</h1>
     <?php
 
-
-    if ($userid) {
+    session_start();
+    if ($_SESSION['userId']) {
     }
     ?>
 </body>
