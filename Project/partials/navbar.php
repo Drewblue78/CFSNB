@@ -1,72 +1,84 @@
 <nav>
     <a href="index.php">Home</a>
-    <a href="jokes.php">Jokes</a>
     <?php
-    session_start();
-    if ($_SESSION['userId'] && $_SESSION['admin']) {
+
+    if ($loggedIn) {
+        echo '<a href="jokes.php">Jokes</a>';
+        echo '<a href="upload.php">Upload</a>';
+    }
+    if ($loggedIn && $isAdmin) {
         echo '<a href="admin.php">Admin</a>';
     }
+
     ?>
     <div id="loginbox">
-        <div id="currentUser">Not Logged In</div>
+        <div id="currentUser">
+            <?php
+            if ($loggedIn) {
+                echo $_SESSION['username'];
+            } else {
+                echo 'Not Logged In';
+            }
+            ?>
+        </div>
         <div id="loginForm">
-            <div class="notLoggedIn">
-                <input id="username" value="bluedrew" />
-                <input id="password" type="password" value="joan" />
-                <button onclick="login()">Login</button>
-                <button onclick="register()">Register</button>
-            </div>
-            <div class="loggedIn">
-                <button onclick="logout()">Logout</button>
-            </div>
+            <?php
+            if ($loggedIn) {
+                echo <<<LOGGEDIN
+        <form action="server.php" method="POST">
+          <input name="action" value="logout" type="hidden" />
+          <button>Logout</button>
+        </form>
+        LOGGEDIN;
+            } else {
+                echo <<<NOTLOGGEDIN
+        <form action="server.php" method="Joke">
+          <input name="username" value="bluedrew" />
+          <input name="password" type="password" value="joan" />
+          <input name="action" value="login" type="hidden" />
+          <button onclick="login()">Login</button>
+          <button onclick="register()">Register</button>
+        </form>
+        NOTLOGGEDIN;
+            }
+            ?>
             <div id="loginStatus"></div>
         </div>
     </div>
 </nav>
 <script>
-    $('#currentUser').click(event => {
-        $('#loginForm').toggleClass("visible")
+    document.querySelector('#currentUser').addEventListener('click', ev => {
+        document.querySelector('#loginForm').classList.toggle('visible')
     })
 
     function register() {
-        $('div#loginStatus').text("")
-        let data = {
-            action: "register",
-            username: $("#username").val(),
-            password: $("#password").val()
-        }
-        $.post(SERVER, data, res => {
-            if (res.success) {
-                loginSuccess(res)
-            } else {
-                $('div#loginStatus').text(res.message)
-            }
-        }).fail(err => {
-            $('div#loginStatus').html(err.responseText)
-        })
+        document.querySelector("input[name=action]").value = "register"
     }
 
     function login() {
-        $('div#loginStatus').text("")
-        let data = {
-            action: "login",
-            username: $("#username").val(),
-            password: $("#password").val()
-        }
-        $.post(SERVER, data, res => {
-            if (res.success) {
-                loginSuccess(res)
-            } else {
-                $('div#loginStatus').text(res.message)
-            }
-        }).fail(err => {
-            $('div#loginStatus').html(err)
-        })
+        document.querySelector("input[name=action]").value = "login"
     }
 
     function loginSuccess(user) {
         $('#currentUser').text(user.username)
         $('.notLoggedIn').hide()
         $('.loggedIn').show()
+    }
+
+    var cookies = {}
+
+    function getCookies() {
+        var cookieParts = document.cookie.split(';')
+        for (const p of cookieParts) {
+            let subParts = p.trim().split('=')
+            let k = subParts[0]
+            let v = decodeURI(subParts[1])
+            cookies[k] = v
+        }
+    }
+    getCookies()
+
+    if (cookies.authError) {
+        document.getElementById('loginStatus').innerText = cookies.authError
     }
 </script>

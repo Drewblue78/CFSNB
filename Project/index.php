@@ -8,6 +8,12 @@
 <body>
     <?php require "partials/navbar.php" ?>
     <h1>Home</h1>
+    <div class="center">
+        <div class="contain">
+            <?php require "content/listJokes.php"; ?>
+            <?php require "content/listUploads.php"; ?>
+        </div>
+    </div>
 </body>
 
 </html>

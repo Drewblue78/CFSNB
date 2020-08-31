@@ -1,4 +1,4 @@
-<ul class="jokes">
+<ul class="card-list">
     <?php
 
 
@@ -11,8 +11,8 @@
     session_jokes.posted_on
   FROM session_post
   INNER JOIN session_user
-    ON session_post.user_id=session_user.id
-  ORDER BY session_post.posted_on DESC
+    ON session_jokes.user_id=session_user.id
+  ORDER BY session_jokes.posted_on DESC
   JOINEDPOSTS;
 
     $stm = $con->prepare($query);

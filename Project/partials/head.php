@@ -1,7 +1,14 @@
+<?php
+
+session_start();
+$loggedIn = $_SESSION['userId'] ?? false;
+$isAdmin = $_SESSION['admin'] ?? false;
+
+?>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Joke Jenerator</title>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
 <style>
     body,
     html {
@@ -71,10 +78,30 @@
         color: #e32;
     }
 
-    .loggedIn {
-        display: none;
+    ul.card-list {
+        padding: 10px;
+        list-style-type: none;
+    }
+
+    ul.card-list li {
+        background-color: #444;
+        padding: 10px;
+        margin: 4px 4px 12px 4px;
+        position: relative;
+        box-shadow: 0 0 15px #222;
+    }
+
+    ul.card-list li div {
+        text-align: left;
+        text-transform: capitalize;
+    }
+
+    ul.card-list li div span {
+        float: right;
+    }
+
+    .contain {
+        max-width: 500px;
+        display: inline-block;
     }
 </style>
-<script>
-    const SERVER = "http://localhost/Project/server.php"
-</script>
