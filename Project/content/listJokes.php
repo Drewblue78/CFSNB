@@ -9,7 +9,7 @@
     session_user.username,
     session_jokes.content,
     session_jokes.posted_on
-  FROM session_post
+  FROM session_jokes
   INNER JOIN session_user
     ON session_jokes.user_id=session_user.id
   ORDER BY session_jokes.posted_on DESC

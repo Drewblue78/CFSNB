@@ -23,7 +23,7 @@ if (!$loggedIn) {
     </form>
     <div class="center">
         <div class="contain">
-            <?php require "content/listUserUploads.php" ?>
+            <?php require "content/listUploads.php" ?>
         </div>
     </div>
     <script>

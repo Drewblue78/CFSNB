@@ -32,7 +32,7 @@
         LOGGEDIN;
             } else {
                 echo <<<NOTLOGGEDIN
-        <form action="server.php" method="Joke">
+        <form action="server.php" method="POST">
           <input name="username" value="bluedrew" />
           <input name="password" type="password" value="joan" />
           <input name="action" value="login" type="hidden" />

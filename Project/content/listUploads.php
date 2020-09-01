@@ -8,13 +8,13 @@
     $query = <<<JOINEDUPLOADS
   SELECT 
     session_user.username,
-    uploaded_newjoke.title,
-    uploaded_newjoke.stored_name,
-    uploaded_newjoke.uploaded_on
-  FROM uploaded_image
+    upload_newjoke.title,
+    upload_newjoke.stored_name,
+    upload_newjoke.upload_on
+  FROM upload_newjoke
   INNER JOIN session_user
-    ON uploaded_newjoke.user_id=session_user.id
-  ORDER BY uploaded_newjoke.uploaded_on DESC
+    ON upload_newjoke.user_id=session_user.id
+  ORDER BY upload_newjoke.upload_on DESC
   JOINEDUPLOADS;
 
     $stm = $con->prepare($query);

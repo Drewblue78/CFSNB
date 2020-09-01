@@ -10,8 +10,7 @@
     <h1>Admin</h1>
     <?php
 
-    session_start();
-    if ($_SESSION['userId']) {
+    if ($loggedIn) {
     }
     ?>
 </body>

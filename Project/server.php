@@ -1,11 +1,11 @@
 <?php
 
-header("Content-type: application/json; charset=utf-8");
+function redirect($url)
+{
+  header("Location: $url");
+}
 
 require 'db.php';
-
-$res = new stdClass();
-$res->success = false;
 
 $action = $_POST['action'] ?? false;
 
@@ -16,11 +16,17 @@ switch ($action) {
   case 'login':
     login();
     break;
+  case 'logout':
+    logout();
+    break;
   default:
-    $res->message = "Action not handled";
+    redirect("404.php");
 }
 
-echo json_encode($res);
+function setStatusMessage($msg = "")
+{
+  setcookie("statusMsg", $msg, time() + 3);
+}
 
 function register()
 {
@@ -32,7 +38,7 @@ function register()
     return;
   }
 
-  global $con, $res;
+  global $con;
 
   $query = <<<QUERY
     INSERT INTO session_user (username, password) VALUE (:uname , :pword)
@@ -52,7 +58,7 @@ function register()
       'admin' => false
     ]);
   } else {
-    $res->message = "Username taken";
+    redirect("index.php");
   }
 }
 
@@ -66,7 +72,7 @@ function login()
     return;
   }
 
-  global $con, $res;
+  global $con;
 
   $query = <<<QUERY
   SELECT id, username, password, last_login, admin 
@@ -85,24 +91,26 @@ function login()
         // Login successful
         loginSuccess($user);
       } else {
-        $res->message = "Bad Credentials";
+        setStatusMessage("Bad Credentials");
       }
     } else {
-      $res->message = "Bad Credentials";
+      setStatusMessage("Bad Credentials");
     }
   } else {
     // Something went wrong with the DB
-    $res->message = "Bad Credentials";
+    setStatusMessage("Bad Credentials");
   }
+}
+function logout()
+{
+  session_start();
+  session_destroy();
+  redirect("index.php");
 }
 
 function loginSuccess($user)
 {
-  global $con, $res;
-
-  $res->success = true;
-  $res->username = $user['username'];
-  $res->admin = !!$user['admin'];
+  global $con;
 
   // Update the last_login
   $query = "UPDATE session_user SET last_login = UTC_TIMESTAMP() WHERE id = :uid";
@@ -120,4 +128,9 @@ function loginSuccess($user)
   $_SESSION['userId'] = $user['id'];
   $_SESSION['username'] = $user['username'];
   $_SESSION['admin'] = $user['admin'];
+  if ($_SESSION['admin']) {
+    redirect("admin.php");
+  } else {
+    redirect("jokes.php");
+  }
 }
