@@ -7,7 +7,7 @@
 
 <body>
     <?php require "partials/navbar.php" ?>
-    <h1>Jokes</h1>
+    <h1>Random Joke Jenerator</h1>
     <?php
 
     if ($loggedIn) {
@@ -29,7 +29,7 @@
         "Red paint.",
 
         "A dyslexic man walks into a bra.",
-        "-",
+        "",
 
         "Where does the General keep his armies?",
         "In his sleevies!",
@@ -95,7 +95,7 @@
     $author = $allqts[$nmbr];
 
     $space = "<font color=$bgcolor>.....................................<br></font>";
-    $comments = "<br><center><font size='-2'><i><a href='joking.php'>";
+    $comments = "<br><center><font size='-2'><i><a href='jokes.php'>";
 
     echo "<center>";
     echo "<Font color=$textcolor size='$textsize'><i>";
@@ -106,13 +106,15 @@
     echo "</center>";
 
 
-    if ($_SERVER['PHP_SELF'] == "/joking.php") {
-        show_source("joking.php");
+    if ($_SERVER['PHP_SELF'] == "/jokes.php") {
+        show_source("jokes.php");
     }
 
     ?>
     <br><br><br>
-    <button>New Joke</button>
+
+    <input type="button" onclick="window.location='jokes.php'" class="Redirect" value="New Joke" />
+
 </body>
 
 </html>
