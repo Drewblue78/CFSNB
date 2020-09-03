@@ -79,6 +79,7 @@ $isAdmin = $_SESSION['admin'] ?? false;
     }
 
     ul.card-list {
+        text-align: left;
         padding: 10px;
         list-style-type: none;
     }
@@ -103,5 +104,9 @@ $isAdmin = $_SESSION['admin'] ?? false;
     .contain {
         max-width: 500px;
         display: inline-block;
+    }
+
+    .center {
+        text-align: center;
     }
 </style>

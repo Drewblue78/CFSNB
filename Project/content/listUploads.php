@@ -15,6 +15,7 @@
   INNER JOIN session_user
     ON upload_newjoke.user_id=session_user.id
   ORDER BY upload_newjoke.upload_on DESC
+  
   JOINEDUPLOADS;
 
     $stm = $con->prepare($query);
