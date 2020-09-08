@@ -4,7 +4,7 @@
 
     if ($loggedIn) {
         echo '<a href="jokes.php">Jokes</a>';
-        echo '<a href="upload.php">Upload</a>';
+        echo '<a href="addJoke.php">Add Joke</a>';
     }
     if ($loggedIn && $isAdmin) {
         echo '<a href="admin.php">Admin</a>';

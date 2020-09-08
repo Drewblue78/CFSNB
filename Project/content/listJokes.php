@@ -65,13 +65,25 @@
         }
         static function jokeContent($row)
         {
+            $date = new DateTime($row['posted_on']);
+            $date = $date->format("D Y");
             return <<<EACHPOST
             <li>
-            <h3>{$row['content']}</h3>
-            <h4>{$row['punchline']}</h4>
-            <div>
-                {$row['username']}
-                <span>{$row['posted_on']}</span>
+            <div class="joke">
+                <h3>{$row['content']}</h3>
+                <h4>{$row['punchline']}</h4>
+                <div>
+                    {$row['username']}
+                    <span>$date</span>
+                </div>
+            </div>
+                <div class="vote-arrow">
+                    <form>
+                        <input >
+                        <input type="hidden" name="jokeId" value="{$row['id']}" />
+
+                        <button>&uarr;</button>
+                    </form>
             </div>
             </li>
             EACHPOST;

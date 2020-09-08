@@ -19,6 +19,9 @@ switch ($action) {
   case 'logout':
     logout();
     break;
+  case 'addJoke':
+    addJoke();
+    break;
   default:
     redirect("404.php");
 }
@@ -132,5 +135,37 @@ function loginSuccess($user)
     redirect("admin.php");
   } else {
     redirect("jokes.php");
+  }
+}
+
+function addJoke()
+{
+  session_start();
+  $joke = $_POST['joke'] ?? false;
+  $punchline = $_POST['punchline'] ?? false;
+  $userId = $_SESSION['userId'] ?? false;
+  if (!$joke || !$punchline || !$userId) {
+    setStatusMessage("Need a joke and a punchline");
+    redirect("addJoke.php");
+    return;
+  }
+
+  global $con;
+
+  $query = <<<QUERY
+    INSERT INTO session_jokes 
+    (content, punchline, user_id, posted_on) 
+    VALUE (:joke , :pline, :uid, now())
+  QUERY;
+  $stm = $con->prepare($query);
+
+  $stm->bindParam(":joke", $joke);
+  $stm->bindParam(":pline", $punchline);
+  $stm->bindParam(":uid", $userId);
+  if ($stm->execute()) {
+    redirect("index.php");
+  } else {
+    redirect("addJoke.php");
+    setStatusMessage("Something went wrong with the database");
   }
 }

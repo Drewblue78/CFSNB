@@ -15,11 +15,11 @@ if (!$loggedIn) {
     <?php require "partials/navbar.php" ?>
     <h1>Add A Joke</h1>
     <div id="status" class="center"></div>
-    <form action="server.php" method="POST" enctype="multipart/form-data" class="center">
-        <input name="action" value="uploadFile" type="hidden" />
-        <input name="newFile" type="file" required />
-        <input name="title" required />
-        <button>Upload</button>
+    <form action="server.php" method="POST" class="center">
+        <input name="action" value="addJoke" type="hidden" />
+        <input name="joke" required />
+        <input name="punchline" required />
+        <button>Add</button>
     </form>
     <div class="center">
         <div class="contain">
