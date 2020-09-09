@@ -57,7 +57,7 @@
 
                 if ($row = $stm->fetch(PDO::FETCH_ASSOC)) {
                     $foundJoke = true;
-                    echo Jokes::jokeContent($row);
+                    echo Jokes::jokeContentRand($row);
                 }
             }
 
@@ -66,7 +66,7 @@
         static function jokeContent($row)
         {
             $date = new DateTime($row['posted_on']);
-            $date = $date->format("D Y");
+            $date = $date->format("M j, Y");
             return <<<EACHPOST
             <li>
             <div class="joke">
@@ -77,14 +77,37 @@
                     <span>$date</span>
                 </div>
             </div>
-                <div class="vote-arrow">
-                    <form>
-                        <input >
-                        <input type="hidden" name="jokeId" value="{$row['id']}" />
-
-                        <button>&uarr;</button>
+            <div id="status" class="vote-arrow"></div>
+                    <form action="server.php" method="POST" class="vote-arrow">
+                        <div>vote up <br>
+                        <input name="action" value="voteUp" type="hidden" />
+                        <button>&uarr;</button> <br>
+                        <button>&darr;</button> <br>
+                        vote down</div>
                     </form>
-            </div>
+            
+            <script>
+                if (cookies.statusMsg) {
+                    document.getElementById('status').innerText = cookies.statusMsg
+                }
+            </script>
+            </li>
+            EACHPOST;
+        }
+
+        static function jokeContentRand($row)
+        {
+            $date = new DateTime($row['posted_on']);
+            $date = $date->format("M j, Y");
+            return <<<EACHPOST
+            <li>
+            <div class="joke">
+                <h3>{$row['content']}</h3>
+                <h4>{$row['punchline']}</h4>
+                <div>
+                    {$row['username']}
+                    <span>$date</span>
+                </div>
             </li>
             EACHPOST;
         }

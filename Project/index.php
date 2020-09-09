@@ -7,11 +7,10 @@
 
 <body>
     <?php require "partials/navbar.php" ?>
-    <h1>Home</h1>
+    <h1>Favorite Jokes</h1>
     <div class="center">
         <div class="contain">
             <?php Jokes::listJokes(); ?>
-
         </div>
     </div>
 </body>
