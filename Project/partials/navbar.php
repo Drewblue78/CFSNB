@@ -33,8 +33,8 @@
             } else {
                 echo <<<NOTLOGGEDIN
         <form action="server.php" method="POST">
-          <input name="username" value="bluedrew" />
-          <input name="password" type="password" value="joan" />
+          <input name="username" value="username" />
+          <input name="password" type="password" value="password" />
           <input name="action" value="login" type="hidden" />
           <button onclick="login()">Login</button>
           <button onclick="register()">Register</button>

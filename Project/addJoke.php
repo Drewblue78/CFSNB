@@ -17,8 +17,8 @@ if (!$loggedIn) {
     <div id="status" class="center"></div>
     <form action="server.php" method="POST" class="center">
         <input name="action" value="addJoke" type="hidden" />
-        <input name="joke" required />
-        <input name="punchline" required />
+        <input name="joke" value="Type Joke Here" required />
+        <input name="punchline" value="Type Punchline Here" required />
         <button>Add</button>
     </form>
     <div class="center">

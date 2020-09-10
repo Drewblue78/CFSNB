@@ -22,6 +22,9 @@ switch ($action) {
   case 'addJoke':
     addJoke();
     break;
+  case 'vote':
+    vote();
+    break;
   default:
     redirect("404.php");
 }
@@ -166,6 +169,38 @@ function addJoke()
     redirect("index.php");
   } else {
     redirect("addJoke.php");
+    setStatusMessage("Something went wrong with the database");
+  }
+}
+
+function vote()
+{
+  session_start();
+  $user_id = $_SESSION['user_id'] ?? false;
+  $joke_id = $_POST['joke_id'] ?? false;
+  $vote = $_POST['vote'] ?? false;
+  if (!$user_id || !$joke_id || !$vote) {
+    redirect("index.php");
+    return;
+  }
+
+  global $con;
+
+  $query = <<<QUERY
+    INSERT INTO joke_vote 
+    (user_id, joke_id, vote) 
+    VALUE (:uid, :jokeid, :vote)
+  QUERY;
+  $stm = $con->prepare($query);
+
+  $stm->bindParam(":joke_id", $joke_id);
+  $stm->bindParam(":user_id", $user_id);
+  $stm->bindParam(":vote", $vote);
+  if ($stm->execute()) {
+    redirect("index.php");
+    setStatusMessage("+ Vote");
+  } else {
+    redirect("index.php");
     setStatusMessage("Something went wrong with the database");
   }
 }

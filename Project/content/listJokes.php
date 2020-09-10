@@ -11,6 +11,7 @@
             $query = <<<JOINEDPOSTS
             SELECT 
                 session_user.username,
+                session_jokes.id,
                 session_jokes.content,
                 session_jokes.punchline,
                 session_jokes.posted_on
@@ -28,7 +29,16 @@
                 echo Jokes::jokeContent($row);
             }
 
-            echo '</ul>';
+            echo <<<LISTJOKESCRIPT
+            </ul>
+            <script>
+            function voteDown(event){
+                event.target.parentElement.querySelector
+                ("input[name=myvote]").value=false
+            }
+        
+            </script>
+            LISTJOKESCRIPT;
         }
         static function randomJoke()
         {
@@ -79,11 +89,15 @@
             </div>
             <div id="status" class="vote-arrow"></div>
                     <form action="server.php" method="POST" class="vote-arrow">
-                        <div>vote up <br>
-                        <input name="action" value="voteUp" type="hidden" />
-                        <button>&uarr;</button> <br>
-                        <button>&darr;</button> <br>
-                        vote down</div>
+                        <div>
+                            vote up <br>
+                            <input name="action" value="vote" type="hidden" />
+                            <input name="jokeId" value="{$row['id']}" type="hidden" />
+                            <input name="myvote" value="true" type="hidden" />
+                            <button>&uarr;</button> <br>
+                            <button onclick="voteDown(event)">&darr;</button> <br>
+                            vote down
+                        </div>
                     </form>
             
             <script>
