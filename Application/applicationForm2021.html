@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Application Form</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="https://kit.fontawesome.com/8cb668363f.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="header">
+    <table>
+      <tr>
+        <td><img src="img/logoCFS.png" alt="Logo" width="200" height="200"></td>
+        <td>
+          <div class="right">
+            <p>
+              Helping learning organizations give Canadians a head start in the digital workplace
+            </p>
+          </div>
+          <div>
+            <p>
+              Tel: (506)444-4501
+              <br>
+              Fax: (506)453-7183
+              <br>
+              cfsnb@nb.aibn.com
+              <br>
+              http://cfsnb.ca
+            </p>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <main>
+    <div class=text1>
+      <h1>Application for Non-Profit Organizations</h1>
+      <p><b>
+          This form is not for public schools. If you are looking for computer equipment for a public school
+          please contact your Principal or IT staff for information on the proper process.
+        </b></p>
+    </div>
+    <div class="text2">
+      Please complete all information as thoroughly as possible. We may contact you for clarification before your
+      order is processed. <b>Please print a copy of the filled in form for your records. </b> If you do not hear
+      from us within a couple of
+      weeks call or email to confirm receipt of your request.
+    </div>
+
+    <!-- Contact information -->
+
+    <form action="applicationMail.php" method="POST" name="EmailForm">
+      <div class="row">
+        <div class="columnright" style="background-color:#aaa;">
+          <table>
+            <tr>
+              <td>
+                Organization Name
+              </td>
+              <td>
+                <input type=”text” size="35" name="Organization_Name" placeholder="Name" autofocus required>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Street Address
+              </td>
+              <td>
+                <input type=”text” size="35" name="Street_Address" placeholder="Address" required>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Phone
+              </td>
+              <td>
+                <input type="tel" id="phone" name="Phone" size="35" pattern="\d{3}[\-]\d{3}[\-]\d{4}"
+                  placeholder="123-456-7890" required>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                E-mail
+              </td>
+              <td>
+                <input type=”mail” size="35" name="Email" placeholder="name@example.com" required>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="columnleft" style="background-color:#bbb;">
+          <table>
+            <tr>
+              <td>
+                Contact Name
+              </td>
+              <td>
+                <input type=”text” size="35" name="Name" placeholder="Name" required>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                City/Town
+              </td>
+              <td>
+                <input type=”text” size="35" name="City/Town" placeholder="My Town" required>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Postal Code
+              </td>
+              <td>
+                <input type="text" id="postal" name="Postal_Code" size="35"
+                  pattern="[A-Za-z][0-9][A-Za-z] [0-9][A-Za-z][0-9]" placeholder="E3H 1A1" required>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Website
+              </td>
+              <td>
+                <input type=”text” size="35" name="Website" placeholder="www.my-site.com">
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <br>
+
+      <!-- Equipment list -->
+
+      <div class="text3">
+        <table>
+          <tr>
+            <td class="text3-left"> <b>Hardware Request</b></td>
+            <td class="text3-right">
+              If you have any questions about what is available or what options best fit your needs please
+              contact us for clarification prior to submitting order. Some hardware upgrades are available
+              at
+              cost. Please contact us for details.
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="computers" style="background-color:#aaa;">
+        <table>
+          <tr>
+            <td>
+              <b>Desktop PC(s) No OS (Core 2, 4 GB RAM, 80 – 500 GB HDD) no charge </b></label>
+            </td>
+            <td>
+              <input type="number" name="Desktop_with_No_OS" size="4" placeholder="0">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b>Desktop PC(s) Linux (Core 2, 4 GB RAM, 80 – 500 GB HDD) no charge </b>
+            </td>
+            <td>
+              <input type="number" name="Desktop_with_Linux" size="4" placeholder="0">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b>Desktop PC(s) Windows 10 (Intel i5, 4 GB RAM, 80 – 500 GB HDD) $8.75 +tax each*</b>
+            </td>
+            <td>
+              <input type="number" name="Desktop_with_Windows" size="4" placeholder="0">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b>Laptop PC(s) No OS (Core 2, 2 GB RAM, 80 - 500 GB HDD) no charge</b>
+            </td>
+            <td>
+              <input type="number" name="Laptop_with_No_Os" size="4" placeholder="0">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b>Laptop PC(s) Linux (Core 2, 2 GB RAM, 80 - 500 GB HDD) no charge</b>
+            </td>
+            <td>
+              <input type="number" name="Laptop_with_Linux" size="4" placeholder="0">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b>Laptop PC(s) Windows 10 (Core 2, 4 GB RAM, 80 - 500 GB HDD) $17.45 +tax each*</b>
+            </td>
+            <td>
+              <input type="number" name="Laptop_with_Windows" size="4" placeholder="0">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b> Laptop bag for each laptop no charge</b>
+            </td>
+            <td><input type="checkbox" name="Laptop_Bag"></td>
+          </tr>
+        </table>
+      </div>
+      <div class="office" style="background-color:#bbb;">
+        <table>
+          <tr>
+            <td class="office-left"><b>Libre Office no charge </b> <br> Available for Linux or Windows <br>
+              based computers.
+            <td>
+              <input type="number" name="Libre_Office" size="4" placeholder="0">
+            </td>
+            </td>
+            <td class="office-right"><b>MS Office $8.75 +tax each* </b> <br> Available for Windows <br>
+              based
+              computers omly.
+            <td><input type="number" name="MS_Office" size="4" placeholder="0">
+            </td>
+            </td>
+          </tr>
+
+
+        </table>
+        <div class="text4" style="background-color:#bbb;">
+          <p><i>*Includes licensing fees for Windows and/or MS office purchased through MPR
+              program.</i></p>
+        </div>
+      </div>
+      <div class="row2">
+        <div class="column2" style="background-color:#bbb;">
+          <table>
+            <tr>
+              <td id="perif">
+                <b>Monitor(s)</b> <input id="colbox" type="number" name="Monitors" size="4" placeholder="0">
+                <b>Keyboard(s)</b> <input id="colbox" type="number" name="Keyboards" size="4" placeholder="0">
+                <b>Mouse(s)</b> <input id="colbox" type="number" name="Mouses" size="4" placeholder="0">
+                <b>Speaker(s)</b> <input id="colbox" type="number" name="Speakers" size="4" placeholder="0">
+                <b>Printer(s)</b> <input id="colbox" type="number" name="Printers" size="4" placeholder="0">
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Other special requests -->
+
+      <div class="text5">
+        Use this space if you are looking for other items like scanners, projectors, network hardware…
+        <table>
+          <tr>
+            <td id="box"> <b>Other Hardware</b>
+            </td>
+            <td id="bigbox">
+              <textarea name="Other_Hardware" style="height:160px;" cols="95" placeholder="List"></textarea>
+            </td>
+          </tr>
+        </table>
+        Some hardware upgrades are available at cost. Please contact us for details.
+        <table>
+          <tr>
+            <td id="box2"><b> Notes or <br> special requests</b>
+            </td>
+            <td id="bigbox">
+              <textarea name="Notes" style="height:160px;" cols="95" placeholder="Notes"></textarea>
+            </td>
+          </tr>
+        </table>
+
+        <!-- Buttons -->
+
+        <div class="buttons">
+
+          <div>
+            <button input id="back" type="button" value="button" onclick="goBack()"><span
+                class="fas fa-arrow-left"></span>
+              Back</button>
+
+            <button input id="print" type="button" value="button" onclick="window.print()"><span
+                class="fas fa-print"></span>
+              Print Form</button>
+
+            <button input id="submit" type="submit" value="Submit"><span class="fas fa-envelope-open-text"></span>
+              Submit by Email</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </main>
+
+
+  <script>
+    function goBack() {
+      window.history.back();
+    }
+  </script>
+</body>
+
+</html>
