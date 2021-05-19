@@ -88,6 +88,7 @@ if (isset($_POST['submit'])) {
         "Other Hardware " . $_POST['Other_Hardware'] . "\n\n" .
         "Notes " . $_POST['Notes'];
 
+
     $headers = "From:" . $from;
     $headers2 = "From:" . $to;
     mail($to, $subject, $message, $headers);
